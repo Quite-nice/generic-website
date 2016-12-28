@@ -1,0 +1,26 @@
+{
+  "name": "generic-website",
+  "version": "0.0.1",
+  "description": "A tool to create a generic (static) website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quite-nice/generic-website.git"
+  },
+  "keywords": [
+    "tool",
+    "create",
+    "generic",
+    "static",
+    "website"
+  ],
+  "author": "Jeroen Berrevoets <jeroen.berrevoets@gmail.com>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Quite-nice/generic-website/issues"
+  },
+  "homepage": "https://github.com/Quite-nice/generic-website#readme"
+}
