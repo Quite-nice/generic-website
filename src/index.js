@@ -1,8 +1,8 @@
-import fs from 'fs'
+import React from 'react'
+import ReactDOM from 'react-dom/server'
 
-module.exports = function() {
-    console.log(JSON.parse(fs.readFileSync(`${__dirname.split('node_modules')[0]}/.gwrc`)))
-    return 'hello, world'
-  }
+import Main from './react/Main'
 
-module.exports.getRCJson = () => JSON.parse(fs.readFileSync(`${__dirname.split('node_modules')[0]}/.gwrc`))
+module.exports = () => ReactDOM.renderToStaticMarkup(<Main />)
+
+module.exports.getRCJson = require('./helpers').getRCJson
