@@ -1,11 +1,8 @@
 import fs from 'fs'
 
-module.exports = {
-  test: function() {
-  let dir = require.main.filename.split('/')
-  dir[dir.length - 1] = '.gwrc'
-  dir = dir.join('/')
+module.exports = function() {
+    console.log(JSON.parse(fs.readFileSync(`${__dirname.split('node_modules')[0]}/.gwrc`)))
+    return 'hello, world'
+  }
 
-  console.log(JSON.parse(fs.readFileSync(dir)))
-}
-}
+module.exports.getRCJson = () => JSON.parse(fs.readFileSync(`${__dirname.split('node_modules')[0]}/.gwrc`))
