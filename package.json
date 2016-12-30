@@ -2,7 +2,7 @@
   "name": "generic-website",
   "version": "0.0.1",
   "description": "A tool to create a generic (static) react based website",
-  "main": "index.js",
+  "main": "./distribution/index.js",
   "scripts": {
     "start": "node src/index.js",
     "build": "babel src -d distribution",
