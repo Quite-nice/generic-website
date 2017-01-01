@@ -2,12 +2,12 @@ import fs from 'fs'
 import inquirer from 'inquirer'
 import { echo, to } from 'shelljs'
 
-import { typeValidator } from './helpers'
+import { typeValidator, readJSON } from '../../helpers'
 
 
 export const change = (field) => {
   // GET CURRENT GENERIC
-  const generic = JSON.parse(fs.readFileSync('./.generic.json'))
+  const generic = readJSON('./.generic.json')
 
   // ASK THE QUESTION
   const question = [{type: 'input', name: field, message: `${field}: `, validator: (val) => typeValidator(val, field, String)}]

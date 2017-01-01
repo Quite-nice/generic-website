@@ -1,7 +1,7 @@
 import { touch, echo, to } from 'shelljs'
 import inquirer from 'inquirer'
 
-import { typeValidator } from './helpers'
+import { typeValidator } from '../../helpers'
 
 const chain = [
   {type: 'input', name: 'title', message: 'title: ', validator: (val) => typeValidator(val, 'title', String)},
