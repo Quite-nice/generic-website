@@ -10,7 +10,8 @@ const chain = [
   {type: 'input', name: 'mail', message: 'mail: ', validator: (val) => typeValidator(val, 'mail', String)},
   {type: 'input', name: 'github', message: 'github username: ', validator: (val) => typeValidator(val, 'github username', String)},
   {type: 'input', name: 'facebook', message: 'facebook username: ', validator: (val) => typeValidator(val, 'facebook username', String)},
-  {type: 'input', name: 'twitter', message: 'twitter handler (no @ required): ', validator: (val) => typeValidator(val, 'twitter handler', String)}
+  {type: 'input', name: 'twitter', message: 'twitter handler (no @ required): ', validator: (val) => typeValidator(val, 'twitter handler', String)},
+  {type: 'input', name: 'accentColor', message: `accent color (e.g. 'yellow' or '#FF530D')`, validator: (val) => typeValidator(val, 'accent color', String)}
 ]
 
 export const init = () => {
