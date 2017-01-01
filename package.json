@@ -11,7 +11,7 @@
     "patch-release": "npm version patch && npm publish ./"
   },
   "bin": {
-    "generic": "./distribution/cli.js"
+    "generic": "./distribution/cli/cli.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,10 @@
     "babel-preset-react": "^6.16.0"
   },
   "dependencies": {
+    "inquirer": "^2.0.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "shelljs": "^0.7.5",
+    "yargs": "^6.6.0"
   }
 }

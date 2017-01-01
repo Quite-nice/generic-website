@@ -1,3 +1,4 @@
 /node_modules
 /distribution
 /npm-debug.log
+/.generic.json
