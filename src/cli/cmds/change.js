@@ -1,3 +1,3 @@
-export const change = () => {
-  console.log('change from file')
+export const change = (val) => {
+  console.log(val)
 }
