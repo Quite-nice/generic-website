@@ -20,5 +20,5 @@ export const init = () => {
   console.log(require('./static-texts').explain.init)
 
   // FILL OUT THE SUMMARY FILE
-  inquirer.prompt(chain).then((res) => echo(JSON.stringify(res)).to('./.generic.json'))
+  inquirer.prompt(chain).then((res) => echo(JSON.stringify(res, null, 2)).to('./.generic.json'))
 }
