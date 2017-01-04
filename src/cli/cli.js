@@ -13,7 +13,10 @@ const argv = yargs.usage("$0 command")
       .demandOption(['f'], "Please provide a field name, it is required.")
       .help("h").alias("h", "help")
   ))
-  .command("deploy <location>", "deploy your website")
+  .command("deploy [location]", "deploy your website", (yargs) => (
+    yargs
+      .option("p", {alias: "port", describe: "port on which the express server should listen to, default 3000"})
+  ))
   .demand(1, "must provide a valid command")
   .help("h")
   .alias("h", "help")
