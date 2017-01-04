@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
 
-import { typeValidator, readJSON, writeJSON } from '../../helpers'
+import { intValidator, stringValidator, readJSON, writeJSON, createQuestions } from '../../helpers'
 
 export const add = (arg) => {
   const { field, section } = arg
@@ -10,8 +10,7 @@ export const add = (arg) => {
   if (section) {
     addSection(field)
   } else {
-    inquirer.prompt([{type: 'input', name: field, message: `${field}: `,
-    validator: (val) => typeValidator(val, field, String)}]).then((answer) => {
+    inquirer.prompt(createQuestions([{name: field, val: stringValidator}])).then((answer) => {
       generic[field] = answer[field]
       writeJSON('./.generic.json', generic)
     })
@@ -21,10 +20,11 @@ export const add = (arg) => {
 function addSection(name) {
   const generic = readJSON('./.generic.json')
   if (!generic.sections) generic.sections = []
-
-  const questions = [{name: 'rank', type: Number}, {name: 'color', type: String}, {name: 'elementCount', type: Number}, {name: 'description', type: String}].map((q) => (
-    {type: 'input', name: q.name, message: `${q.name}: `, validator: (val) => typeValidator(val, q.name, q.type)}
-  ))
+  const questions = createQuestions([
+    {name: 'color',         val: stringValidator},
+    {name: 'description',   val: stringValidator},
+    {name: 'rank',          val: intValidator},
+    {name: 'elementCount',  val: intValidator}])
 
   inquirer.prompt(questions).then((answer) => {
     answer.title = name
