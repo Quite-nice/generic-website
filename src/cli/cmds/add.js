@@ -5,7 +5,6 @@ import { intValidator, stringValidator, readJSON, writeJSON, createQuestions } f
 
 export const add = (arg) => {
   const { field, section, element } = arg
-
   const generic = readJSON('./.generic.json')
 
   if (section) {
@@ -13,8 +12,15 @@ export const add = (arg) => {
   } else if (element) {
     addElement(field)
   }  else {
-    inquirer.prompt(createQuestions([{name: field, val: stringValidator}])).then((answer) => {
-      generic[field] = answer[field]
+    let questions = createQuestions([{name: field, val: stringValidator}])
+    if (field === true) questions = createQuestions([{name: 'key', val: stringValidator}, {name: 'value', val: stringValidator}])
+
+    inquirer.prompt(questions).then((answer) => {
+      if (answer[field]) {
+        generic[field] = answer[field]
+      } else {
+        generic[answer.key] = answer.value
+      }
       writeJSON('./.generic.json', generic)
     })
   }
@@ -22,6 +28,7 @@ export const add = (arg) => {
 
 function addSection(name) {
   const generic = readJSON('./.generic.json')
+
   if (!generic.sections) generic.sections = []
   const questions = createQuestions([
     {name: 'color',         val: stringValidator},
@@ -46,9 +53,7 @@ function addElement(section) {
       type: 'confirm', name: 'shouldcreate',
       message: `no section with title "${section}" was found, would you like to create it?`})
     .then((answer) => {
-      if (answer.shouldcreate) {
-        addSection(section)
-      }
+      if (answer.shouldcreate) addSection(section)      
     })
   } else {
     const questions = createQuestions([
@@ -59,6 +64,6 @@ function addElement(section) {
       if (!s.elements) s.elements = []
       s.elements.push(answer)
       writeJSON('./.generic.json', generic)
-    })    
+    })
   }
 }
