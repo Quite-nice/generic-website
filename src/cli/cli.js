@@ -21,6 +21,6 @@ const argv = yargs.usage("$0 command")
 switch (argv._[0]) {
   case 'init': init(); break
   case 'change': change(argv.field); break
-  case 'add': console.log(argv); add(argv.field); break
+  case 'add': console.log(argv); add(argv); break
   case 'deploy': deploy(); break
 }
