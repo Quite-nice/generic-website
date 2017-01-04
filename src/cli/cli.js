@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import yargs from 'yargs'
-import { init, change, add, deploy } from './cmds'
+import { init, change, add, deploy, generate } from './cmds'
 
 const argv = yargs.usage("$0 command")
   .command("init", "create a new generic website")
@@ -13,6 +13,7 @@ const argv = yargs.usage("$0 command")
       .demandOption(['f'], "Please provide a field name, it is required.")
       .help("h").alias("h", "help")
   ))
+  .command("generate", "generate the files associated with your website")
   .command("deploy <location>", "deploy your website")
   .demand(1, "must provide a valid command")
   .help("h")
@@ -22,6 +23,7 @@ const argv = yargs.usage("$0 command")
 switch (argv._[0]) {
   case 'init': init(); break
   case 'change': change(argv.field); break
-  case 'add': console.log(argv); add(argv); break
+  case 'add': add(argv); break
+  case 'generate': generate(); break
   case 'deploy': deploy(); break
 }
