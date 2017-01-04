@@ -8,6 +8,7 @@ const argv = yargs.usage("$0 command")
   .command("add", "add a new key and value", (yargs) => (
     yargs
       .option("s", {alias: "section", describe: "add a section"})
+      .option("e", {alias: "element", describe: "add an element to a section"})
       .option("f", {alias: "field", describe: "provide a field name"})
       .demandOption(['f'], "Please provide a field name, it is required.")
       .help("h").alias("h", "help")
