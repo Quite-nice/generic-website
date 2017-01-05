@@ -14,7 +14,9 @@ const argv = yargs.usage("$0 command")
       .help("h").alias("h", "help")
   ))
   .command("generate", "generate the files associated with your website")
-  .command("deploy <location>", "deploy your website")
+  .command("deploy", "deploy your website", (yargs) => (
+    yargs.option("p", {alias: "port", describe: "port to deploy your site (default is 3000)"})
+  ))
   .demand(1, "must provide a valid command")
   .help("h")
   .alias("h", "help")
@@ -25,5 +27,5 @@ switch (argv._[0]) {
   case 'change': change(argv.field); break
   case 'add': add(argv); break
   case 'generate': generate(); break
-  case 'deploy': deploy(); break
+  case 'deploy': deploy(argv); break
 }
