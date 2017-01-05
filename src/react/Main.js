@@ -1,21 +1,20 @@
 import React from 'react'
 
-import { getRCJson } from '../helpers'
+import { readJSON } from '../helpers'
 import Title from './Title'
 
 export default class Main extends React.Component {
   render() {
-    const params = getRCJson()
-
+    const { generic } = this.props
     return (
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />          
-          <title>{params.title}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>{generic.title}</title>
         </head>
         <body>
-          <Title>{params.title}</Title>
+          <Title>{generic.title}</Title>
         </body>
       </html>
     )
