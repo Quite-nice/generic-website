@@ -1,24 +1,26 @@
 # generic-website
-Generic website generator
+This CLI tool should create a generic, static, portfolio type website. Why? because I need one and I much rather fiddle around in javascript than any other website generator or god forbid, HTML + CSS... For now, it is meant for use on the server which reduces the need for fancy ssh deploys. If you want something like that, feel free to issue a pull request!
 
-This repo doesn't do anything just yet, but it should:
+> OH! I guess `generic-website` is a placeholder name, I need something cool and fancy to replace it. Suggestions are welcome!
 
-given a `JSON` file named `.gwrc` (short for `generic-website-rc` ([read this to know what rc actually  means](http://stackoverflow.com/questions/11030552/what-does-rc-mean-in-dot-files)) like the one below...:
-```json
-{
-  "title": "Franzjipan",
-  "domain": "franzjipan.be",
-  "subtitle": "top notch bakery",
-  "theme": "this could be anything",
-  "references": {
-    "jeroen": "url or logo",
-    "kymer": "url or logo",
-    "damiaan": "url or logo"
-  }
-  ...
-}
+## Installing
 ```
+npm install -g generic-website
+```
+## Using
+This generator tool consists of 4 basic commands (as of now, this might change of course!):
 
-> __Please note that:__ this `JSON` object is a mere example and could be something completely different once finished.
+* `generic init`: This one initializes your project by creating a `.generic.json` file and asking you a bunch of questions
+* `generic change [...opts] `: This one changes a field or section in case you answered with a stupid reply in the previous command
+* `generic add [field] [...opts]`: Obviously, this one is used to add some new stuff to your site. Could be elements, sections, ... I'll document this thing a little more further down the road
+* `generic deploy [...opts]`: As this is mainly a server side tool, this one deploys your site to localhost. As of yet, the script doesn't open up any ports to the outside world and by default, deploys to `3000`. This is a command that could use some enhancing.
 
-... should create a generic, static, portfolio type website. Why? because I need one and I much rather fiddle around in javascript than any other website generator or god forbid, HTML + CSS...
+> In case you're wondering, a `delete` command still needs creating.
+
+## Future
+This tool only generates a title to prove it works. These are some of the next steps that I need to tackle before I come even close to a 1.0.0 release:
+
+* Render a cool website based on the `.generic.json` file
+* Flesh out the `express` server to handle `webpack` for better use of bandwith
+* Tests!
+* Support for plugins and themes (probably bootstrap)
