@@ -1,18 +1,18 @@
 import { touch, echo, to } from 'shelljs'
 import inquirer from 'inquirer'
 
-import { typeValidator } from '../../helpers'
+import { stringValidator, createQuestions, cleanObject } from '../../helpers'
 
-const chain = [
-  {type: 'input', name: 'title', message: 'title: ', validator: (val) => typeValidator(val, 'title', String)},
-  {type: 'input', name: 'subtitle', message: 'subtitle: ', validator: (val) => typeValidator(val, 'subtitle', String)},
-  {type: 'input', name: 'description', message: 'description: ', validator: (val) => typeValidator(val, 'message', String)},
-  {type: 'input', name: 'mail', message: 'mail: ', validator: (val) => typeValidator(val, 'mail', String)},
-  {type: 'input', name: 'github', message: 'github username: ', validator: (val) => typeValidator(val, 'github username', String)},
-  {type: 'input', name: 'facebook', message: 'facebook username: ', validator: (val) => typeValidator(val, 'facebook username', String)},
-  {type: 'input', name: 'twitter', message: 'twitter handler (no @ required): ', validator: (val) => typeValidator(val, 'twitter handler', String)},
-  {type: 'input', name: 'accentColor', message: `accent color (e.g. 'yellow' or '#FF530D')`, validator: (val) => typeValidator(val, 'accent color', String)}
-]
+const chain = createQuestions([
+  {name: 'head.title', message: `title: `, val: stringValidator, default: process.env.USER},
+  {name: 'head.subtitle', message: 'subtitle: ', val: stringValidator},
+  {name: 'head.description',message: 'description: ', val: stringValidator},
+  {name: 'social.mail',message: 'mail: ', val: stringValidator},
+  {name: 'social.github',message: 'github: ', val: stringValidator},
+  {name: 'social.facebook',message: 'facebook: ', val: stringValidator},
+  {name: 'social.twitter', message: 'twitter handler (no @ required): ', val: stringValidator},
+  {name: 'style.accentColor', message: `accent color e.g. 'yellow' or '#FF530D'`, val: stringValidator, default: 'grey'}
+])
 
 export const init = () => {
   // CREATE SUMMARY FILE
@@ -20,5 +20,7 @@ export const init = () => {
   console.log(require('./static-texts').explain.init)
 
   // FILL OUT THE SUMMARY FILE
-  inquirer.prompt(chain).then((res) => echo(JSON.stringify(res, null, 2)).to('./.generic.json'))
+  inquirer.prompt(chain).then((answer) => {
+    echo(JSON.stringify(cleanObject(answer), null, 2)).to('./.generic.json')
+  })
 }
