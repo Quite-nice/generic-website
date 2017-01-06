@@ -28,6 +28,7 @@ Main.propTypes = {
     head: React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
 
+      logo: React.PropTypes.string,
       subtitle: React.PropTypes.string,
       description: React.PropTypes.string,
     }).isRequired,
