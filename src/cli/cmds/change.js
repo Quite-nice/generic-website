@@ -16,12 +16,12 @@ export const change = (field) => {
 
 function getQuestions(current, field, path) {
   if (current.constructor === String) {
-    return createQuestions([{name: field, val: stringValidator}])
+    return createQuestions([{name: field, val: stringValidator, default: current}])
   } else {
     const strings = Object.keys(current).filter((key) => current[key].constructor === String)
     const objects = _.difference(Object.keys(current), strings)
 
-    const questions = [...strings.map((s) => ({type: 'input', name: `${path}${s}`, message: `${path}${s}: `, validate: (val) => stringValidator(val, `${path}${s}`)}))]
+    const questions = [...strings.map((s) => ({type: 'input', name: `${path}${s}`, message: `${path}${s}: `, default: current[s], validate: (val) => stringValidator(val, `${path}${s}`)}))]
     for (const o of objects) {
       questions.push(...getQuestions(current[o], o, `${path}${o}.`))
     }
