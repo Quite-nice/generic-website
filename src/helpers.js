@@ -11,6 +11,6 @@ export const intValidator = (val, name) => isNaN(parseInt(val))? `please provide
 export const createQuestions = (questions) => questions.map((q) => ({
   type: q.type || 'input',
   name: q.name,
-  message: `${q.name}: `,
+  message: q.message || `${q.name}: `,
   validate: (val) => q.val(val, q.name)
 }))
