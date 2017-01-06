@@ -11,7 +11,7 @@ const chain = createQuestions([
   {name: 'social.github',message: 'github: ', val: stringValidator},
   {name: 'social.facebook',message: 'facebook: ', val: stringValidator},
   {name: 'social.twitter', message: 'twitter handler (no @ required): ', val: stringValidator},
-  {name: 'style.accentColor', message: `accent color e.g. 'yellow' or '#FF530D'`, val: stringValidator, default: 'grey'}
+  {name: 'style.accentColor', message: `accent color (e.g. 'yellow' or '#FF530D')`, val: stringValidator, default: 'grey'}
 ])
 
 export const init = () => {
