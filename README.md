@@ -16,6 +16,7 @@ This generator tool consists of 4 basic commands (as of now, this might change o
 * `generic deploy [...opts]`: As this is mainly a server side tool, this one deploys your site to localhost. As of yet, the script doesn't open up any ports to the outside world and by default, deploys to `3000`. This is a command that could use some enhancing.
 
 > In case you're wondering, a `delete` command still needs creating.
+> use `-h` or `--help` on any command for more information regarding the options and fields.
 
 ## Future
 This tool only generates a title to prove it works. These are some of the next steps that I need to tackle before I come even close to a 1.0.0 release:
