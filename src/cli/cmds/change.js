@@ -3,7 +3,8 @@ import inquirer from 'inquirer'
 import { echo, to } from 'shelljs'
 import _ from 'lodash'
 
-import { stringValidator, readJSON, createQuestions } from '../../helpers'
+import { stringValidator, createQuestions } from '../../helpers'
+import { readJSON } from '../../ui/helpers'
 
 export const change = (field) => {
   const generic = readJSON('./.generic.json')

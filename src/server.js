@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/server'
 
 import HTML from './routes/HTML'
-import { readJSON } from './helpers'
+import { readJSON } from './ui/helpers'
 
 export default () => {
   const PORT = require('./cli/cmds/deploy').port

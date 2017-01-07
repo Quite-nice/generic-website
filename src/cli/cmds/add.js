@@ -1,7 +1,8 @@
 import inquirer from 'inquirer'
 import _ from 'lodash'
 
-import { intValidator, stringValidator, readJSON, writeJSON, createQuestions } from '../../helpers'
+import { intValidator, stringValidator, writeJSON, createQuestions } from '../../helpers'
+import { readJSON } from '../../ui/helpers'
 
 export const add = (arg) => {
   const { field, section, element } = arg
@@ -53,7 +54,7 @@ function addElement(section) {
       type: 'confirm', name: 'shouldcreate',
       message: `no section with title "${section}" was found, would you like to create it?`})
     .then((answer) => {
-      if (answer.shouldcreate) addSection(section)      
+      if (answer.shouldcreate) addSection(section)
     })
   } else {
     const questions = createQuestions([

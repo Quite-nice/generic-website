@@ -1,7 +1,6 @@
 import fs from 'fs'
 import { echo, to } from 'shelljs'
 
-export const readJSON = (location) => JSON.parse(fs.readFileSync(location))
 export const writeJSON = (location, obj) => echo(JSON.stringify(obj, null, 2)).to(location)
 
 export const stringValidator = (val, name) => val.constructor === String? true: `please provide a valid ${name}`

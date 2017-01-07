@@ -16,5 +16,8 @@ module.exports = {
       test: /\.json$/,
       loader: 'json'
     }]
+  },
+  node: {
+    fs: 'empty'
   }
 }
