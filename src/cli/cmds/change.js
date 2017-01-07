@@ -7,11 +7,11 @@ import { stringValidator, createQuestions } from '../../helpers'
 import { readJSON } from '../../ui/helpers'
 
 export const change = (field) => {
-  const generic = readJSON('./.generic.json')
+  const generic = readJSON('./.generic/.generic.json')
 
   inquirer.prompt(getQuestions(generic[field], field, '')).then((answer) => {
     generic[field] = answer
-    echo(JSON.stringify(generic, null, 2)).to('./.generic.json')
+    echo(JSON.stringify(generic, null, 2)).to('./.generic/.generic.json')
   })
 }
 

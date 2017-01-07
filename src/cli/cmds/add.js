@@ -6,7 +6,7 @@ import { readJSON } from '../../ui/helpers'
 
 export const add = (arg) => {
   const { field, section, element } = arg
-  const generic = readJSON('./.generic.json')
+  const generic = readJSON('./.generic/.generic.json')
 
   if (section) {
     addSection(field)
@@ -22,7 +22,7 @@ export const add = (arg) => {
       } else {
         generic[answer.key] = answer.value
       }
-      writeJSON('./.generic.json', generic)
+      writeJSON('./.generic/.generic.json', generic)
     })
   }
 }
