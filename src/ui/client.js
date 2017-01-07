@@ -5,4 +5,4 @@ import Container from './react/Container'
 
 const generic = require('./.generic.json')
 
-ReactDOM.render(<Container {...{generic}}/>, document.getElementById('generic-website'))
+ReactDOM.render(<Container generic={generic} />, document.getElementById('generic-website'))

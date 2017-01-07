@@ -43,7 +43,9 @@ Container.propTypes = {
 }
 
 Container.defaultProps = {
-  style: {
-    accentColor: 'grey',
+  generic: {
+    style: {
+      accentColor: 'grey'
+    }
   }
 }
