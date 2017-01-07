@@ -21,6 +21,5 @@ This generator tool consists of 4 basic commands (as of now, this might change o
 This tool only generates a title to prove it works. These are some of the next steps that I need to tackle before I come even close to a 1.0.0 release:
 
 * Render a cool website based on the `.generic.json` file
-* Flesh out the `express` server to handle `webpack` for better use of bandwith
 * Tests!
 * Support for plugins and themes (probably bootstrap)
