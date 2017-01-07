@@ -1,27 +1,23 @@
 import React from 'react'
 
-import { readJSON } from '../helpers'
-import Title from './Title'
-
 export default class Main extends React.Component {
   render() {
-    const { head } = this.props.generic
-    console.log(this.props.generic)
     return (
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>{head.title}</title>
         </head>
         <body>
-          <Title>{head.title}</Title>
+          <div id="generic-website" />
+          <script src="http://localhost:3000/bundle.js"/>
         </body>
       </html>
     )
   }
 }
 
+/*
 Main.propTypes = {
   generic: React.PropTypes.shape({
     // Required
@@ -63,3 +59,4 @@ Main.defaultProps = {
     accentColor: 'grey',
   }
 }
+*/

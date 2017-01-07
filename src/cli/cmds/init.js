@@ -1,7 +1,8 @@
-import { touch, echo, to } from 'shelljs'
+import { touch, echo, to, mkdir, cp, cd, exec } from 'shelljs'
 import inquirer from 'inquirer'
 
 import { stringValidator, createQuestions, cleanObject } from '../../helpers'
+import packageJSON from './config/package'
 
 const chain = createQuestions([
   {name: 'head.title', message: `title: `, val: stringValidator, default: process.env.USER},
@@ -16,11 +17,17 @@ const chain = createQuestions([
 
 export const init = () => {
   // CREATE SUMMARY FILE
-  touch('.generic.json')
-  console.log(require('./static-texts').explain.init)
+  mkdir('./.generic')
+  touch('./.generic/.generic.json')
+  cp('-R', `${__dirname.split('cli')[0]}/ui/*` , './.generic')
+  echo(JSON.stringify(packageJSON, null, 2)).to('./.generic/package.json')
+  cd('./.generic')
+  exec('npm install')
+  cd('..')
 
   // FILL OUT THE SUMMARY FILE
-  inquirer.prompt(chain).then((answer) => {
-    echo(JSON.stringify(cleanObject(answer), null, 2)).to('./.generic.json')
+  console.log(require('./static-texts').explain.init)
+  inquirer .prompt(chain).then((answer) => {
+    echo(JSON.stringify(cleanObject(answer), null, 2)).to('./.generic/.generic.json')
   })
 }

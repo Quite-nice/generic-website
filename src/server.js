@@ -2,7 +2,7 @@ import express from 'express'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 
-import Main from './react/Main'
+import HTML from './routes/HTML'
 import { readJSON } from './helpers'
 
 export default () => {
@@ -10,9 +10,10 @@ export default () => {
 
   const app = express()
 
+  app.use(express.static('./.generic/dist'))
+
   app.get('/', (req, res) => {
-    const generic = readJSON('./.generic.json')
-    res.send(ReactDOM.renderToStaticMarkup(<Main {...{generic}} />))
+    res.send(ReactDOM.renderToStaticMarkup(<HTML />))
     res.end()
   })
 
