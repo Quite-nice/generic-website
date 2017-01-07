@@ -22,7 +22,7 @@ export const init = () => {
   cp('-R', `${__dirname.split('cli')[0]}/ui/*` , './.generic')
   echo(JSON.stringify(packageJSON, null, 2)).to('./.generic/package.json')
   cd('./.generic')
-  exec('npm install')
+  exec('npm install -s')
   cd('..')
 
   // FILL OUT THE SUMMARY FILE

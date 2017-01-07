@@ -14,7 +14,9 @@ const argv = yargs.usage("$0 command")
       .help("h").alias("h", "help")
   ))
   .command("deploy", "deploy your website", (yargs) => (
-    yargs.option("p", {alias: "port", describe: "port to deploy your site (default is 3000)"})
+    yargs
+    .option("p", {alias: "port", describe: "port to deploy your site (default is 3000)"})
+    .help("h").alias("h", "help")
   ))
   .demand(1, "must provide a valid command")
   .help("h")
