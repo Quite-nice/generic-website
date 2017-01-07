@@ -60,6 +60,12 @@ Container.propTypes = {
       title: React.PropTypes.string,
       description: React.PropTypes.string,
       color: React.PropTypes.string,
+      elements: React.PropTypes.arrayOf(React.PropTypes.shape({
+        title: React.PropTypes.string,
+        logo: React.PropTypes.string,
+        link: React.PropTypes.string,
+        alt: React.PropTypes.string
+      }))
     })),
     plugins: React.PropTypes.arrayOf(React.PropTypes.shape({
       rank: React.PropTypes.number.isRequired,
