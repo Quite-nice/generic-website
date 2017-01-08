@@ -2,3 +2,5 @@
 /distribution
 /npm-debug.log
 /.generic.json
+/.generic
+.DS_Store
