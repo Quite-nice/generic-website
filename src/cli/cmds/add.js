@@ -8,7 +8,8 @@ export const add = (arg) => {
   const { field, section, element } = arg
   const generic = readJSON('./.generic/.generic.json')
 
-  if (field !== true && _.at(generic, field).length > 0) {
+  if (field.constructor === String && _.at(generic, field)[0]) {
+    console.log(field, _.at(generic, field))
     inquirer.prompt([{type: 'confirm', name: 'new_field', message: 'Wups, looks like that field already exists, would you like to create another one?'}])
       .then((answer) => {
         if (answer.new_field) {
@@ -30,7 +31,7 @@ export const add = (arg) => {
         _.set(generic, answer.key, answer.value)
         writeJSON('./.generic/.generic.json', generic)
       })
-    }  
+    }
   }
 }
 
