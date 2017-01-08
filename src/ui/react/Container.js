@@ -1,8 +1,34 @@
 import React, { Component } from 'react'
 
+import Head from './Head'
+import Plugin from './Plugin'
+import Section from './Section'
+import Contact from './Contact'
+
 export default class Container extends Component {
+  renderHead() {
+    return <Head head={this.props.generic.head} />
+  }
+
+  renderContact() {
+    const { generic } = this.props
+    if (generic.contact) return <Contact contact={generic.contact} />
+    return null
+  }
+
+  renderSectionsAndPlugins () {
+    //TODO: renderSectionsAndPlugins
+    return null
+  }
+
   render() {
-    return <p>Containerke {this.props.generic.head.title}</p>
+    return (
+      <div>
+        {this.renderHead()}
+        {this.renderSectionsAndPlugins()}
+        {this.renderContact()}
+      </div>
+    )
   }
 }
 
@@ -18,7 +44,7 @@ Container.propTypes = {
     }).isRequired,
 
     // Optional
-    constact: React.PropTypes.shape({
+    contact: React.PropTypes.shape({
       mail: React.PropTypes.string,
       facebook: React.PropTypes.string,
       twitter: React.PropTypes.string,
@@ -34,6 +60,12 @@ Container.propTypes = {
       title: React.PropTypes.string,
       description: React.PropTypes.string,
       color: React.PropTypes.string,
+      elements: React.PropTypes.arrayOf(React.PropTypes.shape({
+        title: React.PropTypes.string,
+        logo: React.PropTypes.string,
+        link: React.PropTypes.string,
+        alt: React.PropTypes.string
+      }))
     })),
     plugins: React.PropTypes.arrayOf(React.PropTypes.shape({
       rank: React.PropTypes.number.isRequired,

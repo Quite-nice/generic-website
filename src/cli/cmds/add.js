@@ -8,27 +8,37 @@ export const add = (arg) => {
   const { field, section, element } = arg
   const generic = readJSON('./.generic/.generic.json')
 
-  if (section) {
-    addSection(field)
-  } else if (element) {
-    addElement(field)
-  }  else {
-    let questions = createQuestions([{name: field, val: stringValidator}])
-    if (field === true) questions = createQuestions([{name: 'key', val: stringValidator}, {name: 'value', val: stringValidator}])
-
-    inquirer.prompt(questions).then((answer) => {
-      if (answer[field]) {
-        generic[field] = answer[field]
-      } else {
-        generic[answer.key] = answer.value
-      }
-      writeJSON('./.generic/.generic.json', generic)
+  if (field.constructor === String && _.at(generic, field)[0]) {    
+    inquirer.prompt([{type: 'confirm', name: 'new_field', message: 'Wups, looks like that field already exists, would you like to create another one?'}])
+      .then((answer) => {
+        if (answer.new_field) {
+          add({field: true, section: arg.section, element: arg.element})
+        }
     })
+  } else {
+    if (section) {
+      addSection(field)
+    } else if (element) {
+      addElement(field)
+    }  else {
+      let questions = createQuestions([{name: field, val: stringValidator}])
+      if (field === true) questions = createQuestions([{name: 'key', val: stringValidator}, {name: 'value', val: stringValidator}])
+
+      inquirer.prompt(questions).then((answer) => {
+        if (!answer.key) answer = {key: field, value: _.at(answer, field)[0]}
+
+        _.set(generic, answer.key, answer.value)
+        writeJSON('./.generic/.generic.json', generic)
+      })
+    }
   }
 }
 
+// ========================================================
+// = Add inline TYPES
+// ========================================================
 function addSection(name) {
-  const generic = readJSON('./.generic.json')
+  const generic = readJSON('./.generic/.generic.json')
 
   if (!generic.sections) generic.sections = []
   const questions = createQuestions([
@@ -41,7 +51,7 @@ function addSection(name) {
   inquirer.prompt(questions).then((answer) => {
     answer.title = name
     generic.sections.push(answer)
-    writeJSON('./.generic.json', generic)
+    writeJSON('./.generic/.generic.json', generic)
   })
 }
 
@@ -64,7 +74,7 @@ function addElement(section) {
     inquirer.prompt(questions).then((answer) => {
       if (!s.elements) s.elements = []
       s.elements.push(answer)
-      writeJSON('./.generic.json', generic)
+      writeJSON('./.generic/.generic.json', generic)
     })
   }
 }
