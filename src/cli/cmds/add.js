@@ -8,55 +8,35 @@ export const add = (arg) => {
   const { field, section, element } = arg
   const generic = readJSON('./.generic/.generic.json')
 
-  if (section) {
-    addSection(field)
-  } else if (element) {
-    addElement(field)
-  }  else {
-    let questions = createQuestions([{name: field, val: stringValidator}])
-    if (field === true) questions = createQuestions([{name: 'key', val: stringValidator}, {name: 'value', val: stringValidator}])
-
-    inquirer.prompt(questions).then((answer) => {
-      if (!answer.key) answer = transformAnswer(answer)
-      _.set(generic, answer.key, answer.value)
-
-      //generic = answerField(generic, (answer.key? answer.key: field, (answer.value? answer.value: answer)))
-      writeJSON('./.generic/.generic.json', generic)
+  if (field !== true && _.at(generic, field).length > 0) {
+    inquirer.prompt([{type: 'confirm', name: 'new_field', message: 'Wups, looks like that field already exists, would you like to create another one?'}])
+      .then((answer) => {
+        if (answer.new_field) {
+          add({field: true, section: arg.section, element: arg.element})
+        }
     })
+  } else {
+    if (section) {
+      addSection(field)
+    } else if (element) {
+      addElement(field)
+    }  else {
+      let questions = createQuestions([{name: field, val: stringValidator}])
+      if (field === true) questions = createQuestions([{name: 'key', val: stringValidator}, {name: 'value', val: stringValidator}])
+
+      inquirer.prompt(questions).then((answer) => {
+        if (!answer.key) answer = {key: field, value: _.at(answer, field)[0]}
+
+        _.set(generic, answer.key, answer.value)
+        writeJSON('./.generic/.generic.json', generic)
+      })
+    }  
   }
 }
 
-function addField(answer) {
-  const generic = readJSON('./.generic/.generic.json')
-  let current = generic
-
-  const keys = answer.key.split('.')
-  for (const el of keys[keys.length - 1]) {
-    if (!current[el]) current[el] = {}
-    current = current[el]
-  }
-  current[keys[keys.length - 1]] = answer.value
-  writeJSON('./.generic/.generic.json', generic)
-}
-
-function toKeyValue(obj) {
-  let key = `${Object.keys(object)[0]}.`
-  let object = obj[`${key.substr(0, key.length - 1)}`]
-  while (object[key.substr(0, key.length - 1)].constructor === Object) {
-    key += `${Object.keys(object)[0]}.`
-    const keys = key.split('.')
-    object = object[keys[keys.length - 1]]
-  }
-
-  const keys = key.split('.')
-
-  return {
-    key: key,
-    value: object[keys[keys.length - 1]]
-  }
-
-}
-
+// ========================================================
+// = Add inline TYPES
+// ========================================================
 function addSection(name) {
   const generic = readJSON('./.generic/.generic.json')
 
