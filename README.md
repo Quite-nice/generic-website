@@ -1,4 +1,8 @@
-# generic-website
+
+# generic-website 🎁 
+
+[![npm][npm]][npm-url]
+
 This CLI tool should create a generic, static, portfolio type website. Why? because I need one and I much rather fiddle around in javascript than any other website generator or god forbid, HTML + CSS... For now, it is meant for use on the server which reduces the need for fancy ssh deploys. If you want something like that, feel free to issue a pull request!
 
 > OH! I guess `generic-website` is a placeholder name, I need something cool and fancy to replace it. Suggestions are welcome!
@@ -25,3 +29,6 @@ This tool only generates a title to prove it works. These are some of the next s
 * Render a cool website based on the `.generic.json` file
 * Tests!
 * Support for plugins and themes (probably bootstrap)
+
+[npm]: https://img.shields.io/npm/v/generic-website.svg
+[npm-url]: https://npmjs.com/package/generic-website
