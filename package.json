@@ -1,6 +1,6 @@
 {
   "name": "generic-website",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tool to create a generic (static) react based website",
   "scripts": {
     "start": "node src/index.js",
