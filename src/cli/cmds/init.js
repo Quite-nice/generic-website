@@ -8,10 +8,10 @@ const chain = createQuestions([
   {name: 'head.title', message: `title: `, val: stringValidator, default: process.env.USER},
   {name: 'head.subtitle', message: 'subtitle: ', val: stringValidator},
   {name: 'head.description',message: 'description: ', val: stringValidator},
-  {name: 'social.mail',message: 'mail: ', val: stringValidator},
-  {name: 'social.github',message: 'github: ', val: stringValidator},
-  {name: 'social.facebook',message: 'facebook: ', val: stringValidator},
-  {name: 'social.twitter', message: 'twitter handler (no @ required): ', val: stringValidator},
+  {name: 'contact.mail',message: 'mail: ', val: stringValidator},
+  {name: 'contact.github',message: 'github: ', val: stringValidator},
+  {name: 'contact.facebook',message: 'facebook: ', val: stringValidator},
+  {name: 'contact.twitter', message: 'twitter handler (no @ required): ', val: stringValidator},
   {name: 'style.accentColor', message: `accent color (e.g. 'yellow' or '#FF530D')`, val: stringValidator, default: 'grey'}
 ])
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
+import md5 from 'md5'
 
 import Head from './Head'
 import Plugin from './Plugin'
@@ -17,15 +19,20 @@ export default class Container extends Component {
   }
 
   renderSectionsAndPlugins () {
-    //TODO: renderSectionsAndPlugins
-    return null
+    console.log('hello')
+
+    const { generic } = this.props
+    if (!generic.sections) return null
+    return generic.sections
+      .sort((a, b) => parseInt(a.rank) > parseInt(b.rank))
+      .map((s) => <Section content={s} key={`${md5(JSON.stringify(s))}`} />)
   }
 
   render() {
     return (
       <div>
         {this.renderHead()}
-        {this.renderSectionsAndPlugins()}
+        <div>{this.renderSectionsAndPlugins()}</div>
         {this.renderContact()}
       </div>
     )
@@ -54,19 +61,7 @@ Container.propTypes = {
       accentColor: React.PropTypes.string,
       theme: React.PropTypes.string,
     }),
-    sections: React.PropTypes.arrayOf(React.PropTypes.shape({
-      rank: React.PropTypes.number.isRequired,
-
-      title: React.PropTypes.string,
-      description: React.PropTypes.string,
-      color: React.PropTypes.string,
-      elements: React.PropTypes.arrayOf(React.PropTypes.shape({
-        title: React.PropTypes.string,
-        logo: React.PropTypes.string,
-        link: React.PropTypes.string,
-        alt: React.PropTypes.string
-      }))
-    })),
+    sections: React.PropTypes.array,
     plugins: React.PropTypes.arrayOf(React.PropTypes.shape({
       rank: React.PropTypes.number.isRequired,
       component: React.PropTypes.string.isRequired,

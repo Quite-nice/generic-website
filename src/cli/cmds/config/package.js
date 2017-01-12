@@ -10,5 +10,7 @@ export default {
     "style-loader": "^0.13.1",
     "json-loader": "^0.5.4",
     "react-bootstrap": "^0.30.7",
+    "md5": "^2.2.1",
+    "lodash": "^4.17.4"
   }
 }
